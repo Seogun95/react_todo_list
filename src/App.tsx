@@ -24,18 +24,23 @@ function App() {
     setTextInput(value);
   };
 
+  //TODO: TS에서 제출 버튼 눌렀을때, 빈값 출력 버그 수정!!!
   const submitBtnHandler = () => {
-    const obj = {
-      id: todoTitle.length + 1,
-      text: todoInput,
-      body: textInput,
-      isdone: false,
-    };
-    // 배열안에서 스프레드로 이전에 있던 값 todoTitle에 새로운 값 obj를 추가한다.
-    // 그리고 state값이 변경 되면서 새로운 주소값을 할당받아 리렌더링이 일어난다. 이것이 불변셩
-    setTodoTitle([...todoTitle, obj]);
-    setTodoInput('');
-    setTextInput('');
+    if (todoInput === '' || textInput === '') {
+      return;
+    } else {
+      const obj = {
+        id: todoTitle.length + 1,
+        text: todoInput,
+        body: textInput,
+        isdone: false,
+      };
+      // 배열안에서 스프레드로 이전에 있던 값 todoTitle에 새로운 값 obj를 추가한다.
+      // 그리고 state값이 변경 되면서 새로운 주소값을 할당받아 리렌더링이 일어난다. 이것이 불변셩
+      setTodoTitle([...todoTitle, obj]);
+      setTodoInput('');
+      setTextInput('');
+    }
   };
 
   // 완료 버튼: 할일 ➜ 완료한 일로 이동
