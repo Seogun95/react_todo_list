@@ -8,7 +8,7 @@ function App() {
   //todo title
   const [todoTitle, setTodoTitle] = useState([{ id: 1, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false }]);
   //done state
-  const [todoDone, setTodoDone] = useState([{ id: 2, text: '짜장면 먹기', body: '한결님 사랑해요', isdone: true }]);
+  const [todoDone, setTodoDone] = useState([{ id: 0, text: '짜장면 먹기', body: '한결님 사랑해요', isdone: true }]);
 
   const inputTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -42,6 +42,7 @@ function App() {
   const moveToDone = (id: number) => {
     let deleteTodo = todoTitle.filter((_, i) => todoTitle[i].id !== id);
     let addToDone = todoTitle.filter((_, i) => todoTitle[i].id === id); //할일 ➜ 완료한 일로 이동
+    addToDone[0].isdone = true;
     setTodoTitle(deleteTodo);
     setTodoDone([...todoDone, ...addToDone]);
   };
@@ -50,7 +51,7 @@ function App() {
   const moveToTodo = (id: number) => {
     let deleteDone = todoDone.filter((_, i) => todoDone[i].id !== id);
     let addTodoDone = todoDone.filter((_, i) => todoDone[i].id === id);
-
+    addTodoDone[0].isdone = false;
     setTodoDone(deleteDone);
     setTodoTitle([...todoTitle, ...addTodoDone]);
   };
@@ -82,7 +83,7 @@ function App() {
             <div key={i}>
               <h3>{a.text}</h3>
               <h4>{a.body}</h4>
-              <button onClick={() => moveToDone(a.id)}>완료</button>
+              <button onClick={() => moveToDone(a.id)}>{a.isdone ? '취소' : '완료'}</button>
               <button onClick={() => deleteTodo(a.id)}>삭제</button>
             </div>
           );
@@ -95,7 +96,7 @@ function App() {
             <div key={i}>
               <h3>{a.text}</h3>
               <h4>{a.body}</h4>
-              <button onClick={() => moveToTodo(a.id)}>취소</button>
+              <button onClick={() => moveToTodo(a.id)}>{a.isdone ? '취소' : '완료'}</button>
               <button onClick={() => deleteDoneside(a.id)}>삭제</button>
             </div>
           );
