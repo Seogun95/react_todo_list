@@ -1,4 +1,3 @@
-import { log } from 'console';
 import React, { useState } from 'react';
 
 import './App.css';
@@ -8,7 +7,7 @@ function App() {
   const [todoInput, setTodoInput] = useState('');
   const [textInput, setTextInput] = useState('');
   //todo title
-  const [todoTitle, setTodoTitle] = useState([{ id: 0, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false }]);
+  const [todoTitle, setTodoTitle] = useState([{ id: 1, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false }]);
 
   const inputTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -38,11 +37,16 @@ function App() {
     setTextInput('');
   };
 
+  // 삭제 버튼 완료
+  const deleteTodo = (id: number) => {
+    // filter는 새배열을 만들어 배열을 반환 했기 때문에 구조분해 할당 할 필요 없다. (이전에 있던 배열을 버림)
+    let deleteList = todoTitle.filter((_, i) => todoTitle[i].id !== id);
+    setTodoTitle(deleteList);
+  };
   return (
     <div className="App">
       <input value={todoInput} onChange={inputTodo} />
       <input value={textInput} onChange={textTodo} />
-
       <button onClick={submitBtnHandler}>제출</button>
       <div>
         <h1>할 일</h1>
@@ -54,7 +58,7 @@ function App() {
               <h3>{a.text}</h3>
               <h4>{a.body}</h4>
               <button>완료</button>
-              <button>삭제</button>
+              <button onClick={() => deleteTodo(a.id)}>삭제</button>
             </div>
           );
         })}
