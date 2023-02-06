@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TodoCard from './component/TodoCard';
 import './App.css';
 
 function App() {
@@ -6,9 +7,13 @@ function App() {
   const [todoInput, setTodoInput] = useState('');
   const [textInput, setTextInput] = useState('');
   //todo title
-  const [todoTitle, setTodoTitle] = useState([{ id: 0, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false }]);
+  const [todoTitle, setTodoTitle] = useState([
+    { id: 0, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false },
+  ]);
   //done state
-  const [todoDone, setTodoDone] = useState([{ id: 1, text: '짜장면 먹기', body: '한결님 사랑해요', isdone: true }]);
+  const [todoDone, setTodoDone] = useState([
+    { id: 1, text: '짜장면 먹기', body: '한결님 사랑해요', isdone: true },
+  ]);
 
   const inputTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -84,13 +89,16 @@ function App() {
         {/*map 함수를 사용하여 바인딩을 한다*/}
         {/*map사용할때는 반드시 Key값이 들어가야한다.*/}
         {todoTitle.map((a, i) => {
+          /*key는 고유 식별자 이기 때문에 prop으로 넘길 필요 없다.*/
           return (
-            <div key={i}>
-              <h3>{a.text}</h3>
-              <h4>{a.body}</h4>
-              <button onClick={() => moveToDone(a.id)}>{a.isdone ? '취소' : '완료'}</button>
-              <button onClick={() => deleteTodo(a.id)}>삭제</button>
-            </div>
+            <TodoCard
+              key={i}
+              title={a.text}
+              body={a.body}
+              btnfn={() => moveToDone(a.id)}
+              btnText={a.isdone ? '취소' : '완료'}
+              deleteBtn={() => deleteTodo(a.id)}
+            />
           );
         })}
       </div>
@@ -98,12 +106,14 @@ function App() {
         <h1>완료 한 일</h1>
         {todoDone.map((a, i) => {
           return (
-            <div key={i}>
-              <h3>{a.text}</h3>
-              <h4>{a.body}</h4>
-              <button onClick={() => moveToTodo(a.id)}>{a.isdone ? '취소' : '완료'}</button>
-              <button onClick={() => deleteDoneside(a.id)}>삭제</button>
-            </div>
+            <TodoCard
+              key={i}
+              title={a.text}
+              body={a.body}
+              btnfn={() => moveToTodo(a.id)}
+              btnText={a.isdone ? '취소' : '완료'}
+              deleteBtn={() => deleteDoneside(a.id)}
+            />
           );
         })}
       </div>
