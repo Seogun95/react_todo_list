@@ -13,11 +13,16 @@ function App() {
   const [textInput, setTextInput] = useState('');
   //todo title
   const [todoTitle, setTodoTitle] = useState([
-    { id: 0, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false },
+    { id: 0, text: 'React 완강 목표', body: '노마드코더 마스터클래스 2월 30일까지', isdone: false },
   ]);
   //done state
   const [todoDone, setTodoDone] = useState([
-    { id: 1, text: '짜장면 먹기', body: '한결님 사랑해요', isdone: true },
+    {
+      id: 1,
+      text: 'React 입문 완강',
+      body: '스파르타 코딩클럽 React 입문 2월 4일까지',
+      isdone: true,
+    },
   ]);
 
   const inputTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
