@@ -41,7 +41,8 @@ function App() {
 
   //TODO: TS에서 제출 버튼 눌렀을때, 빈값 출력 버그 수정!!!
   const submitBtnHandler = () => {
-    if (todoInput === '' || textInput === '') {
+    if (todoInput === '') {
+      alert('할 일은 필수 사항 입니다.');
       return;
     } else {
       const obj = {
