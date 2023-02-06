@@ -6,9 +6,9 @@ function App() {
   const [todoInput, setTodoInput] = useState('');
   const [textInput, setTextInput] = useState('');
   //todo title
-  const [todoTitle, setTodoTitle] = useState([{ id: 1, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false }]);
+  const [todoTitle, setTodoTitle] = useState([{ id: 0, text: '밖에 나가서 해물찜 먹기', body: '노래방 가기', isdone: false }]);
   //done state
-  const [todoDone, setTodoDone] = useState([{ id: 0, text: '짜장면 먹기', body: '한결님 사랑해요', isdone: true }]);
+  const [todoDone, setTodoDone] = useState([{ id: 1, text: '짜장면 먹기', body: '한결님 사랑해요', isdone: true }]);
 
   const inputTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -30,7 +30,7 @@ function App() {
       return;
     } else {
       const obj = {
-        id: todoTitle.length + 1,
+        id: Date.now(),
         text: todoInput,
         body: textInput,
         isdone: false,
