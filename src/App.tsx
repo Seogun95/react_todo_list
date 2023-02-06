@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import TodoCard from './component/TodoCard';
-import './App.css';
+import { HiPlus } from 'react-icons/hi';
+import { FaPencilAlt, FaCheck } from 'react-icons/fa';
+import { FcApproval, FcClock } from 'react-icons/fc';
+import { RiArrowGoBackLine } from 'react-icons/ri';
+import style from './App.module.css';
 import './reset.css';
 
 function App() {
@@ -81,42 +85,81 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <TodoInput value={todoInput} onChange={inputTodo} />
-      <TodoInput value={textInput} onChange={textTodo} />
-      <button onClick={submitBtnHandler}>제출</button>
-      <div>
-        <h1>할 일</h1>
-        {/*map 함수를 사용하여 바인딩을 한다*/}
-        {/*map사용할때는 반드시 Key값이 들어가야한다.*/}
-        {todoTitle.map((a, i) => {
-          /*key는 고유 식별자 이기 때문에 prop으로 넘길 필요 없다.*/
-          return (
-            <TodoCard
-              key={i}
-              title={a.text}
-              body={a.body}
-              btnfn={() => moveToDone(a.id)}
-              btnText={a.isdone ? '취소' : '완료'}
-              deleteBtn={() => deleteTodo(a.id)}
-            />
-          );
-        })}
+    <div className={style.todo__layout}>
+      <div className={style.todo__container}>
+        <h1>
+          TODO LIST <FaPencilAlt />
+        </h1>
+        <div className={style.todo__input__container}>
+          <label htmlFor={'todoInput'}>
+            <span>* </span>할일
+          </label>
+          <input
+            id={'todoInput'}
+            className={style.todo__input}
+            value={todoInput}
+            onChange={inputTodo}
+            placeholder={'할일을 작성해주세요'}
+          />
+        </div>
+        <div className={style.todo__input__container}>
+          <label htmlFor={'textInput'}>
+            <span>* </span>자세히
+          </label>
+          <input
+            id={'textInput'}
+            className={style.todo__input}
+            value={textInput}
+            onChange={textTodo}
+            placeholder={'할일을 보충할 말을 작성해주세요'}
+          />
+        </div>
+        <button className={style.todo__submit} onClick={submitBtnHandler}>
+          <HiPlus />
+        </button>
       </div>
-      <div>
-        <h1>완료 한 일</h1>
-        {todoDone.map((a, i) => {
-          return (
-            <TodoCard
-              key={i}
-              title={a.text}
-              body={a.body}
-              btnfn={() => moveToTodo(a.id)}
-              btnText={a.isdone ? '취소' : '완료'}
-              deleteBtn={() => deleteDoneside(a.id)}
-            />
-          );
-        })}
+      <div className={style.todo__box__continaer}>
+        <div className={style.todo__box}>
+          <h4>
+            <FcClock />
+            안했다!
+          </h4>
+          {/*map 함수를 사용하여 바인딩을 한다*/}
+          {/*map사용할때는 반드시 Key값이 들어가야한다.*/}
+          {todoTitle.map((a, i) => {
+            /*key는 고유 식별자 이기 때문에 prop으로 넘길 필요 없다.*/
+            return (
+              <TodoCard
+                key={i}
+                title={a.text}
+                body={a.body}
+                btnfn={() => moveToDone(a.id)}
+                btnText={a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
+                bgcolor={a.isdone ? '#fe645c' : '#ffc332'}
+                deleteBtn={() => deleteTodo(a.id)}
+              />
+            );
+          })}
+        </div>
+        <div className={style.todo__box}>
+          <h4>
+            <FcApproval />
+            다했다!
+          </h4>
+          {todoDone.map((a, i) => {
+            return (
+              <TodoCard
+                key={i}
+                title={a.text}
+                body={a.body}
+                btnfn={() => moveToTodo(a.id)}
+                btnText={a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
+                bgcolor={a.isdone ? '#fe645c' : '#ffc332'}
+                deleteBtn={() => deleteDoneside(a.id)}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
