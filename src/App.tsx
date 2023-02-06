@@ -141,6 +141,7 @@ function App() {
                 btnfn={() => moveToDone(a.id)}
                 btnText={a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
                 bgcolor={a.isdone ? '#fe645c' : '#ffc332'}
+                borderColor={a.isdone ? '3px solid #9ed260' : '3px solid #fe645c'}
                 deleteBtn={() => deleteTodo(a.id)}
               />
             );
@@ -160,6 +161,7 @@ function App() {
                 btnfn={() => moveToTodo(a.id)}
                 btnText={a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
                 bgcolor={a.isdone ? '#fe645c' : '#ffc332'}
+                borderColor={a.isdone ? '3px solid #9ed260' : '3px solid #fe645c'}
                 deleteBtn={() => deleteDoneside(a.id)}
               />
             );

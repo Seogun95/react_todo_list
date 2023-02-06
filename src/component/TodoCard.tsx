@@ -9,11 +9,12 @@ interface TodoProps {
   deleteBtn: (e: React.MouseEvent<HTMLElement>) => void;
   btnText: JSX.Element;
   bgcolor: string;
+  borderColor: string;
 }
 
-function TodoCard({ title, body, btnfn, btnText, deleteBtn, bgcolor }: TodoProps) {
+function TodoCard({ title, body, btnfn, btnText, deleteBtn, bgcolor, borderColor }: TodoProps) {
   return (
-    <div className={styles.todo__cardBox}>
+    <div className={styles.todo__cardBox} style={{ border: borderColor }}>
       <div style={{ padding: '2rem' }}>
         <p className={styles.todo__title}>{title}</p>
         <p className={styles.todo__desc}>{body}</p>
@@ -22,7 +23,7 @@ function TodoCard({ title, body, btnfn, btnText, deleteBtn, bgcolor }: TodoProps
         <button style={{ backgroundColor: bgcolor }} onClick={btnfn}>
           {btnText}
         </button>
-        <button style={{ backgroundColor: '#fe645c' }} onClick={deleteBtn}>
+        <button style={{ backgroundColor: '#ff493f' }} onClick={deleteBtn}>
           <FiTrash2 />
         </button>
       </div>
