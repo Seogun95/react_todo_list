@@ -59,16 +59,16 @@ function App() {
     }
   };
 
-  // 완료 버튼: 할일 ➜ 완료한 일로 이동
+  // 완료 버튼: 할 일 ➜ 완료한 일로 이동
   const moveToDone = (id: number) => {
     let deleteTodo = todoTitle.filter((_, i) => todoTitle[i].id !== id);
-    let addToDone = todoTitle.filter((_, i) => todoTitle[i].id === id); //할일 ➜ 완료한 일로 이동
+    let addToDone = todoTitle.filter((_, i) => todoTitle[i].id === id); //할 일 ➜ 완료한 일로 이동
     addToDone[0].isdone = true;
     setTodoTitle(deleteTodo);
     setTodoDone([...todoDone, ...addToDone]);
   };
 
-  // 취소 버튼: 완료한일 ➜ 할일로 이동
+  // 취소 버튼: 완료한일 ➜ 할 일로 이동
   const moveToTodo = (id: number) => {
     let deleteDone = todoDone.filter((_, i) => todoDone[i].id !== id);
     let addTodoDone = todoDone.filter((_, i) => todoDone[i].id === id);
@@ -77,7 +77,7 @@ function App() {
     setTodoTitle([...todoTitle, ...addTodoDone]);
   };
 
-  // 삭제 버튼: 할일 삭제 버튼
+  // 삭제 버튼: 할 일 삭제 버튼
   const deleteTodo = (id: number) => {
     // filter는 새배열을 만들어 배열을 반환 했기 때문에 구조분해 할당 할 필요 없다. (이전에 있던 배열을 버림)
     let deleteList = todoTitle.filter((_, i) => todoTitle[i].id !== id);
@@ -98,14 +98,14 @@ function App() {
         </h1>
         <div className={style.todo__input__container}>
           <label htmlFor={'todoInput'}>
-            <span>* </span>할일
+            <span>* </span>할 일
           </label>
           <input
             id={'todoInput'}
             className={style.todo__input}
             value={todoInput}
             onChange={inputTodo}
-            placeholder={'할일을 작성해주세요'}
+            placeholder={'할 일을 작성해주세요'}
           />
         </div>
         <div className={style.todo__input__container}>
@@ -117,7 +117,7 @@ function App() {
             className={style.todo__input}
             value={textInput}
             onChange={textTodo}
-            placeholder={'할일을 보충할 말을 작성해주세요'}
+            placeholder={'할 일을 보충할 말을 작성해주세요'}
           />
         </div>
         <button className={style.todo__submit} onClick={submitBtnHandler}>
