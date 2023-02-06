@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TodoCard from './component/TodoCard';
 import './App.css';
+import './reset.css';
 
 function App() {
   //useState는 값을 정하기 위해 만드는 것이다.
@@ -81,8 +82,8 @@ function App() {
 
   return (
     <div className="App">
-      <input value={todoInput} onChange={inputTodo} />
-      <input value={textInput} onChange={textTodo} />
+      <TodoInput value={todoInput} onChange={inputTodo} />
+      <TodoInput value={textInput} onChange={textTodo} />
       <button onClick={submitBtnHandler}>제출</button>
       <div>
         <h1>할 일</h1>
