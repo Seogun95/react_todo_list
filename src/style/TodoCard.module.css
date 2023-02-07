@@ -1,0 +1,44 @@
+.todo__cardBox {
+  width: 100%;
+  background: #6d6d6d;
+  border-radius: 1rem;
+  color: white;
+  transition: 0.2s linear;
+  box-shadow: rgb(178 178 178 / 30%) 0 26px 30px -10px, rgb(31 31 31 / 71%) 0 16px 10px -10px;
+  overflow: hidden;
+}
+
+.todo__title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+.todo__desc {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.todo__cardBox:hover .todo__cardBox__button_box button {
+  opacity: 1;
+}
+
+.todo__cardBox:hover {
+  box-shadow: rgba(82, 82, 82, 0.68) 0 26px 30px -10px, rgba(81, 81, 81, 0.71) 0 16px 10px -10px;
+}
+
+.todo__cardBox:hover button {
+  color: white;
+}
+
+.todo__cardBox__button_box {
+  border-radius: 0 0 1rem 1rem;
+  transition: 0.3s ease;
+}
+.todo__cardBox__button_box button {
+  width: 50%;
+  height: 35px;
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  font-size: 1.3rem;
+}
