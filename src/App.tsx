@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import TodoCard from './component/TodoCard';
 import { HiPlus } from 'react-icons/hi';
 import { FaPencilAlt, FaCheck } from 'react-icons/fa';
 import { FcApproval, FcClock } from 'react-icons/fc';
 import { RiArrowGoBackLine } from 'react-icons/ri';
-import style from './App.module.css';
+import { FiTrash2 } from 'react-icons/fi';
+import styles from './App.module.css';
 import './reset.css';
 
 function App() {
@@ -91,41 +91,41 @@ function App() {
   };
 
   return (
-    <div className={style.todo__layout}>
-      <div className={style.todo__container}>
+    <div className={styles.todo__layout}>
+      <div className={styles.todo__container}>
         <h1>
           TODO LIST <FaPencilAlt />
         </h1>
-        <div className={style.todo__input__container}>
+        <div className={styles.todo__input__container}>
           <label htmlFor={'todoInput'}>
             <span>* </span>할 일
           </label>
           <input
             id={'todoInput'}
-            className={style.todo__input}
+            className={styles.todo__input}
             value={todoInput}
             onChange={inputTodo}
             placeholder={'할 일을 작성해주세요'}
           />
         </div>
-        <div className={style.todo__input__container}>
+        <div className={styles.todo__input__container}>
           <label htmlFor={'textInput'}>
             <span>* </span>자세히
           </label>
           <input
             id={'textInput'}
-            className={style.todo__input}
+            className={styles.todo__input}
             value={textInput}
             onChange={textTodo}
             placeholder={'할 일을 보충할 말을 작성해주세요'}
           />
         </div>
-        <button className={style.todo__submit} onClick={submitBtnHandler}>
+        <button className={styles.todo__submit} onClick={submitBtnHandler}>
           <HiPlus />
         </button>
       </div>
-      <div className={style.todo__box__continaer}>
-        <div className={style.todo__box}>
+      <div className={styles.todo__box__continaer}>
+        <div className={styles.todo__box}>
           <h4>
             <FcClock />
             안했다!
@@ -135,36 +135,61 @@ function App() {
           {todoTitle.map((a, i) => {
             /*key는 고유 식별자 이기 때문에 prop으로 넘길 필요 없다.*/
             return (
-              <TodoCard
+              <div
+                className={styles.todo__cardBox}
+                style={{ border: a.isdone ? '3px solid #9ed260' : '3px solid #fe645c' }}
                 key={i}
-                title={a.text}
-                body={a.body}
-                btnfn={() => moveToDone(a.id)}
-                btnText={a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
-                bgcolor={a.isdone ? '#fe645c' : '#ffc332'}
-                borderColor={a.isdone ? '3px solid #9ed260' : '3px solid #fe645c'}
-                deleteBtn={() => deleteTodo(a.id)}
-              />
+              >
+                <div style={{ padding: '2rem' }}>
+                  <p className={styles.todo__title}>{a.text}</p>
+                  <p className={styles.todo__desc}>{a.body}</p>
+                </div>
+                <div className={styles.todo__cardBox__button_box}>
+                  <button
+                    style={{ backgroundColor: a.isdone ? '#fe645c' : '#ffc332' }}
+                    onClick={() => moveToDone(a.id)}
+                  >
+                    {a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
+                  </button>
+                  <button style={{ backgroundColor: '#ff493f' }} onClick={() => deleteTodo(a.id)}>
+                    <FiTrash2 />
+                  </button>
+                </div>
+              </div>
             );
           })}
         </div>
-        <div className={style.todo__box}>
+        <div className={styles.todo__box}>
           <h4>
             <FcApproval />
             다했다!
           </h4>
           {todoDone.map((a, i) => {
             return (
-              <TodoCard
+              <div
                 key={i}
-                title={a.text}
-                body={a.body}
-                btnfn={() => moveToTodo(a.id)}
-                btnText={a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
-                bgcolor={a.isdone ? '#fe645c' : '#ffc332'}
-                borderColor={a.isdone ? '3px solid #9ed260' : '3px solid #fe645c'}
-                deleteBtn={() => deleteDoneside(a.id)}
-              />
+                className={styles.todo__cardBox}
+                style={{ border: a.isdone ? '3px solid #9ed260' : '3px solid #fe645c' }}
+              >
+                <div style={{ padding: '2rem' }}>
+                  <p className={styles.todo__title}>{a.text}</p>
+                  <p className={styles.todo__desc}>{a.body}</p>
+                </div>
+                <div className={styles.todo__cardBox__button_box}>
+                  <button
+                    style={{ backgroundColor: a.isdone ? '#fe645c' : '#ffc332' }}
+                    onClick={() => moveToTodo(a.id)}
+                  >
+                    {a.isdone ? <RiArrowGoBackLine /> : <FaCheck />}
+                  </button>
+                  <button
+                    style={{ backgroundColor: '#ff493f' }}
+                    onClick={() => deleteDoneside(a.id)}
+                  >
+                    <FiTrash2 />
+                  </button>
+                </div>
+              </div>
             );
           })}
         </div>
