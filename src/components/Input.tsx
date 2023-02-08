@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { HiPlus } from 'react-icons/hi';
 import styles from '../style/Input.module.css';
 
-interface Userprops {
+export type Userprops = {
   id: number;
   text: string;
   body: string;
   isdone: boolean;
-}
+};
 
 interface InputProps {
   setTodoTitle: (e: Userprops[]) => void;

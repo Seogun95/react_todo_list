@@ -3,24 +3,7 @@ import styles from '../style/TodoCard.module.css';
 import { FiTrash2 } from 'react-icons/fi';
 import { RiArrowGoBackLine } from 'react-icons/ri';
 import { FaCheck } from 'react-icons/fa';
-
-interface Userprops {
-  id: number;
-  text: string;
-  body: string;
-  isdone: boolean;
-}
-
-interface TodoProps {
-  todoTitle: Userprops[];
-  todoDone: Userprops[];
-  setTodoTitle: (e: Userprops[]) => void;
-  setTodoDone: (e: Userprops[]) => void;
-  text: string;
-  body: string;
-  id: number;
-  isdone: boolean;
-}
+import { TodoProps } from './TodoCard';
 
 const TodoDoneCard = ({
   text,
@@ -44,6 +27,7 @@ const TodoDoneCard = ({
     let deleteDoneList = todoDone.filter((_, i) => todoDone[i].id !== id);
     setTodoDone(deleteDoneList);
   };
+
   return (
     <div
       className={styles.todo__cardBox}

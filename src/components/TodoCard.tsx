@@ -3,15 +3,9 @@ import styles from '../style/TodoCard.module.css';
 import { FiTrash2 } from 'react-icons/fi';
 import { RiArrowGoBackLine } from 'react-icons/ri';
 import { FaCheck } from 'react-icons/fa';
+import { Userprops } from './Input';
 
-interface Userprops {
-  id: number;
-  text: string;
-  body: string;
-  isdone: boolean;
-}
-
-interface TodoProps {
+export type TodoProps = {
   todoTitle: Userprops[];
   setTodoTitle: (e: Userprops[]) => void;
   setTodoDone: (e: Userprops[]) => void;
@@ -20,7 +14,7 @@ interface TodoProps {
   body: string;
   id: number;
   isdone: boolean;
-}
+};
 
 const TodoCard = ({
   text,
